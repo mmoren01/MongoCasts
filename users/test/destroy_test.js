@@ -20,30 +20,30 @@ describe('Deleting a user', () => {
   });
 
   it('class method remove', (done) => {
-    // Remove a bunch of records with some given criteria
-    User.remove({ name: 'Joe' })
-      .then(() => User.findOne({ name: 'Joe' }))
-      .then((user) => {
-        assert(user === null);
-        done();
-      });
+    User.deleteMany({ name: 'Joe' })
+    .then(() => User.findOne({ name: 'Joe' }))
+    .then((user) => {
+      assert(user === null);
+      done();
+    });
   });
 
   it('class method findOneAndRemove', (done) => {
-    User.findOneAndRemove({ name: 'Joe' })
-      .then(() => User.findOne({ name: 'Joe' }))
-      .then((user) => {
-        assert(user === null);
-        done();
-      });
+    User.findOneAndDelete({ name: 'Joe' })
+    .then(() => User.findOne({ name: 'Joe' }))
+    .then((user) => {
+      assert(user === null);
+      done();
+    });
   });
 
   it('class method findByIdAndRemove', (done) => {
-    User.findByIdAndRemove(joe._id)
-      .then(() => User.findOne({ name: 'Joe' }))
-      .then((user) => {
-        assert(user === null);
-        done();
-      });
+    User.findByIdAndDelete(joe._id)
+    .then(() => User.findOne({ name: 'Joe' }))
+    .then((user) => {
+      assert(user === null);
+      done();
+    });
   });
+
 });
